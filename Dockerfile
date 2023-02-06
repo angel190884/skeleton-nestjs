@@ -1,4 +1,4 @@
-FROM node:16 as install
+FROM node:18.14 as install
 LABEL stage=install
 
 WORKDIR /src/install
@@ -8,7 +8,7 @@ COPY package-lock.json .
 
 RUN npm install
 
-FROM node:16 as compile
+FROM node:18.14 as compile
 LABEL stage=compile
 
 WORKDIR /src/build
@@ -19,7 +19,7 @@ COPY . .
 RUN npm run build
 RUN npm install --production
 
-FROM node:16-alpine as deploy
+FROM node:18.14-alpine as deploy
 
 WORKDIR /app
 
